@@ -1,0 +1,7 @@
+App_Data/**
+App_Code/**
+.vs/epi12/v16/.suo
+bin/Debug/net5.0/epi12.Views.dll
+bin/Debug/net5.0/epi12.Views.pdb
+bin/Debug/net5.0/epi12.dll
+bin/Debug/net5.0/epi12.pdb
