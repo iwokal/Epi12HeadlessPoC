@@ -19,29 +19,29 @@
 </template>
 
 <script>
-    import * as CONSTANTS from '@/Scripts/constants';
-    import BlockComponentSelector from '@/Scripts/components/BlockComponentSelector.vue';
-    import { mapState } from 'vuex';
+import * as CONSTANTS from '@/Scripts/constants';
+import BlockComponentSelector from '@/Scripts/components/BlockComponentSelector.vue';
+import { mapState } from 'vuex';
 
-    export default {
-        props: ['model'],
-        computed: mapState({
-            isEditable: state => state.epiContext.isEditable
-        }),
-        components: {
-            BlockComponentSelector
-        },
-        methods: {
-            getDisplayOption(value) {
-                let displayoption = value;
-                for (var key in CONSTANTS.DISPLAY_OPTIONS) {
-                    if (CONSTANTS.DISPLAY_OPTIONS.hasOwnProperty(key)) {
-                        if (displayoption === key) {
-                            return CONSTANTS.DISPLAY_OPTIONS[key];
-                        }
+export default {
+    props: ['model'],
+    computed: mapState({
+        isEditable: state => state.epiContext.isEditable
+    }),
+    components: {
+        BlockComponentSelector
+    },
+    methods: {
+        getDisplayOption(value) {
+            let displayoption = value;
+            for (var key in CONSTANTS.DISPLAY_OPTIONS) {
+                if (CONSTANTS.DISPLAY_OPTIONS.hasOwnProperty(key)) {
+                    if (displayoption === key) {
+                        return CONSTANTS.DISPLAY_OPTIONS[key];
                     }
                 }
             }
         }
-    };
+    }
+};
 </script>

@@ -17,9 +17,9 @@ sync(store, router);
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#Import_a_module_for_its_side_effects_only
 import '@/Scripts/epiMessages';
 
-// generate svg sprite from all files in /Assets/Images/SVG
-const files = require.context('@/Images/SVG', false, /.*\.svg$/);
-files.keys().forEach(files);
+//// generate svg sprite from all files in /Assets/Images/SVG
+//const files = require.context('@/Images/SVG', false, /.*\.svg$/);
+//files.keys().forEach(files);
 
 // Episerver helpers
 import EpiEdit from '@/Scripts/directives/epiEdit';
