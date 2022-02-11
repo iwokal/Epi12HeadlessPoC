@@ -1,0 +1,8 @@
+App_Data/**
+App_Code/**
+
+/node_modules/.bin
+/node_modules
+/obj/Debug
+/bin/Debug/
+/bin

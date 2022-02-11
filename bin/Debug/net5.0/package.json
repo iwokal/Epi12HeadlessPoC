@@ -1,8 +1,8 @@
 {
-    "name": "music-festival-vue-template",
+    "name": "epi12",
     "version": "1.0.0",
     "private": true,
-    "description": "Vue version of the Music Festival template site",
+    "description": "epi 12 PoC",
     "author": "Episerver AB",
     "license": "Apache-2.0",
     "scripts": {
