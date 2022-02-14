@@ -13,12 +13,12 @@
 </template>
 
 <script>
-    import ConditionalImage from '@/Scripts/components/widgets/ConditionalImage.vue';
+import ConditionalImage from '@/Scripts/components/widgets/ConditionalImage.vue';
 
-    export default {
-        props: ['model'],
-        components: {
-            ConditionalImage
-        }
-    };
+export default {
+    props: ['model'],
+    components: {
+        ConditionalImage
+    }
+};
 </script>

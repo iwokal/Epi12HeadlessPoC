@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    export default {
-        props: ['alt', 'src']
-    };
+export default {
+    props: ['alt', 'src']
+};
 </script>

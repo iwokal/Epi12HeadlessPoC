@@ -1,8 +1,10 @@
-﻿using EPiServer.Cms.UI.AspNetIdentity;
+﻿using System.IO;
+using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Web.Routing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace epi12
@@ -46,6 +48,12 @@ namespace epi12
             }
 
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "Assets")),
+                RequestPath = "/Assets"
+            });
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

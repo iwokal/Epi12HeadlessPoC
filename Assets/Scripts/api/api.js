@@ -25,7 +25,7 @@ export default {
      *  - updated data after a `contentSaved` message, which has the content link
      */
     getContentByContentLink: (contentLink, parameters) =>
-        get(`${applicationPath}api/episerver/v2.0/`, `content/${contentLink}`, parameters),
+        get(`${applicationPath}api/episerver/v3.0/`, `content/${contentLink}`, parameters),
 
     /**
      * Getting data from ContentDeliveryAPI through regular routing (friendly URLs) was added in ContentDeliveryAPI 2.3.0.
