@@ -5,3 +5,8 @@ bin/Debug/net5.0/epi12.Views.dll
 bin/Debug/net5.0/epi12.Views.pdb
 bin/Debug/net5.0/epi12.dll
 bin/Debug/net5.0/epi12.pdb
+/node_modules/**
+/obj/**
+/.vs/**
+/bin/**
+/Assets/bundled/**

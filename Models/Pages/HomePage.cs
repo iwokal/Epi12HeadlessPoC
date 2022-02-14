@@ -1,4 +1,5 @@
-﻿using EPiServer.Core;
+﻿using epi12.Models.Media;
+using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using System;
@@ -17,6 +18,7 @@ namespace epi12.Models.Pages
         [Display(Name = "Main body", Description = "Add a body",
                  GroupName = SystemTabNames.Content,
                  Order = 3)]
+        [AllowedTypes(typeof(ImageFile))]
         public virtual ContentArea MainBody { get; set; }
     }
 }
