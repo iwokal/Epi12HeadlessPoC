@@ -10,3 +10,6 @@ bin/Debug/net5.0/epi12.pdb
 /obj/Debug
 /bin/Debug/
 /bin
+/.vs
+/Assets/bundled
+/bin/Debug/net5.0
