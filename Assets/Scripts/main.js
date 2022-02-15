@@ -25,16 +25,25 @@ import '@/Scripts/epiMessages';
 import EpiEdit from '@/Scripts/directives/epiEdit';
 Vue.directive('epi-edit', EpiEdit);
 
-import LandingPage from '@/Scripts/components/pages/HomePage.vue';
+// Blocks
+import ContentBlock from '@/Scripts/components/blocks/ContentBlock.vue';
+import GenericBlock from '@/Scripts/components/blocks/GenericBlock.vue';
+// Media
+import ImageFile from '@/Scripts/components/media/ImageFile.vue';
+// Pages
+import HomePage from '@/Scripts/components/pages/HomePage.vue';
+import ContentPage from '@/Scripts/components/pages/ContentPage.vue';
 // Views
 import DefaultPage from '@/Scripts/components/DefaultPage.vue';
 
 // Blocks
-
+Vue.component('ContentBlock', ContentBlock);
+Vue.component('GenericBlock', GenericBlock);
 // Media
-
+Vue.component('ImageFile', ImageFile);
 // Pages
-Vue.component('HomePage', LandingPage);
+Vue.component('HomePage', HomePage);
+Vue.component('ContentPage', ContentPage);
 // Views
 Vue.component('DefaultPage', DefaultPage);
 

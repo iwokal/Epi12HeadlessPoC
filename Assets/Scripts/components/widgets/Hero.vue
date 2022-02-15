@@ -16,7 +16,7 @@
 
             <epi-property v-show="!epiDisableEditing" property-name="HeroImage"></epi-property>
         </div>
-        <div class="Hero-image" v-if="heroimage" :style="{ 'background-image': 'url(' + heroimage + ')' }"></div>
+        <div class="Hero-image" :style="{ 'background-image': 'url(' + heroimage + ')', 'height': '500px' }"></div>
     </section>
 
 </template>

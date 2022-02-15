@@ -1,19 +1,15 @@
 <!--
-    Landing page for the site.
+    Content page for the site.
 
-    View for Models/Pages/HomePage.cs
+    View for Models/Pages/ContentPage.cs
 -->
 
 <template>
-    <div class="HomePage" scoped>
-        <Hero :title="model.title" :subtitle="model.subtitle" :heroimage="model.heroImage" />
-
-        <a :class-name="'Button modal-default-button landing-page-button'"
-                  :href="model.detailsLink.expandedValue.url">
-            {{model.detailsLink.expandedValue.name}}
-        </a>
-
+    <div class="ContentPage" scoped>
         <main class="Page-container">
+            <h1 v-epi-edit="'Title'" v-html="model.title"></h1>
+            <p v-epi-edit="'Description'" v-html="model.description"></p>
+
             <div v-epi-edit="'MainContentArea'">
                 <ContentArea :model="model.mainContentArea"></ContentArea>
             </div>
@@ -29,14 +25,12 @@
 
 <script>
 import ContentArea from '@/Scripts/components/ContentArea.vue';
-import Hero from '@/Scripts/components/widgets/Hero.vue';
 import { SHOW_MODAL } from '@/Scripts/store/modules/appContext';
 import { mapMutations } from 'vuex';
 
 export default {
     components: {
-        ContentArea,
-        Hero,
+        ContentArea
     },
     props: ['model'],
     methods: mapMutations({
