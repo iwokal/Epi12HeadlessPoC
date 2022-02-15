@@ -35,7 +35,7 @@ namespace epi12
             });
 
             services.AddContentDefinitionsApi();
-            services.AddContentDeliveryApi().WithSiteBasedCors();
+            services.AddContentDeliveryApi().WithSiteBasedCors().WithFriendlyUrl();
         }
 
 
