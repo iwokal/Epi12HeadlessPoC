@@ -5,6 +5,7 @@ using EPiServer.SpecializedProperties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using epi12.Models.Pages;
 using EPiServer.ContentApi.Core.Serialization.Internal;
 using EPiServer.ServiceLocation;
 
@@ -20,6 +21,11 @@ namespace epi12.Models
         public override void Filter(ContentApiModel contentApiModel, ConverterContext converterContext)
         {
             contentApiModel.Properties = contentApiModel.Properties.Select(FlattenProperty).ToDictionary(x => x.Key, x => x.Value);
+            //mock for extending content api model
+            if (contentApiModel.ContentType.Contains(typeof(HomePage).Name))
+            {
+                contentApiModel.Properties.Add("viewModel", "viewModelMock");
+            }
         }
 
         private static KeyValuePair<string, object> FlattenProperty(KeyValuePair<string, object> property)
