@@ -7,7 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using epi12.Models.Pages;
 using EPiServer.ContentApi.Core.Serialization.Internal;
+using EPiServer.Editor;
 using EPiServer.ServiceLocation;
+using EPiServer.Web;
+using EPiServer.Web.Routing;
+using Microsoft.AspNetCore.Http;
 
 namespace epi12.Models
 {
@@ -18,8 +22,18 @@ namespace epi12.Models
     [ServiceConfiguration(typeof(IContentApiModelFilter), Lifecycle = ServiceInstanceScope.Singleton)]
     public class CustomContentApiModelFilter : ContentApiModelFilter<ContentApiModel>
     {
-        public override void Filter(ContentApiModel contentApiModel, ConverterContext converterContext)
+        private readonly IUrlResolver _urlResolver;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public CustomContentApiModelFilter(IUrlResolver urlResolver, IHttpContextAccessor httpContextAccessor)
         {
+            _urlResolver = urlResolver;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        public override void Filter(ContentApiModel contentApiModel, ConverterContext converterContext)
+        { 
+            contentApiModel.Url = ResolveUrl(new ContentReference((int)contentApiModel.ContentLink.Id), contentApiModel.Language.Name); //test edit mode
             contentApiModel.Properties = contentApiModel.Properties.Select(FlattenProperty).ToDictionary(x => x.Key, x => x.Value);
             //mock for extending content api model
             if (contentApiModel.ContentType.Contains(typeof(HomePage).Name))
@@ -72,6 +86,35 @@ namespace epi12.Models
             var contentModelDisplayOption = propertyModel.Value.FirstOrDefault(x => x.ContentLink.Id == contentApiModel.ContentLink.Id)?.DisplayOption;
             contentApiModel.Properties.Add("displayOption", contentModelDisplayOption);
             return contentApiModel;
+        }
+
+        private string ResolveUrl(ContentReference contentLink, string language)
+        {
+            return _urlResolver.GetUrl(contentLink, language, new UrlResolverArguments
+            {
+                ContextMode = GetContextMode()
+            });
+        }
+
+        /// <summary>
+        /// The "epieditmode" querystring parameter is added to URLs by Episerver as a way to keep track of what context is currently active.
+        /// If there is no "epieditmode" parameter we're in regular view mode.
+        /// If the "epieditmode" parameter has value "True" we're in edit mode.
+        /// If the "epieditmode" parameter has value "False" we're in preview mode.
+        /// All of these different modes will resolve to different URLs for the same content.
+        /// </summary>
+        private ContextMode GetContextMode()
+        {
+            var httpCtx = _httpContextAccessor.HttpContext;
+            if (httpCtx == null || httpCtx.Request == null || !httpCtx.Request.Query.ContainsKey(PageEditing.EpiEditMode))
+            {
+                return ContextMode.Default;
+            }
+            if (bool.TryParse((string?) httpCtx.Request.Query[PageEditing.EpiEditMode], out bool editMode))
+            {
+                return editMode ? ContextMode.Edit : ContextMode.Preview;
+            }
+            return ContextMode.Undefined;
         }
 
     }

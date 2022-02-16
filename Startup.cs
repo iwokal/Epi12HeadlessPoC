@@ -1,8 +1,13 @@
 ﻿using System.IO;
+using epi12.Models;
 using EPiServer.Cms.UI.AspNetIdentity;
+using EPiServer.ContentApi.Core.Serialization;
+using EPiServer.Core;
+using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
@@ -34,6 +39,14 @@ namespace epi12
                 options.LoginPath = "/util/Login";
             });
 
+            //services.Intercept<IContentApiModelFilter>((locator, filter) =>
+            //    new CustomContentApiModelFilter(
+            //        locator.GetInstance<IUrlResolver>(),
+            //        locator.GetInstance<ServiceAccessor<HttpContext>>()
+            //    )
+            //);
+
+            services.AddHttpContextAccessor();
             services.AddContentDefinitionsApi();
             services.AddContentDeliveryApi().WithSiteBasedCors().WithFriendlyUrl();
         }
