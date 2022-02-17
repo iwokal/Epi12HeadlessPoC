@@ -18,7 +18,7 @@ function setContext() {
     // The `epiReady` event only has `isEditable`, but the epi object has both.
     const context = {
         inEditMode: window.epi.inEditMode,
-        isEditable: window.epi.isEditable
+        isEditable: window.epi.inEditMode //   TODO: find a fix for this weird hack, should be: isEditable: window.epi.isEditable
     };
 
     // Make the context available to all Vue components.
