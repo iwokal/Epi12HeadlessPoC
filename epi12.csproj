@@ -4,7 +4,9 @@
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="EntityFramework" Version="6.4.4" />
 		<PackageReference Include="EPiServer.CMS" Version="12.*" />
+		<PackageReference Include="EPiServer.Commerce" Version="14.1.2" />
 		<PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.0.1" />
 		<PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.0.1" />
 		<PackageReference Include="EPiServer.ContentDeliveryApi.Core" Version="3.0.1" />

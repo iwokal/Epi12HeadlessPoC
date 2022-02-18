@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Web.Routing;
+using Mediachase.Commerce.Anonymous;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,8 @@ namespace epi12
             }
 
             services.AddMvc();
+            services.AddCommerce();
+            services.AddEmbeddedLocalization<Startup>();
             services.AddCms()
                 .AddCmsAspNetIdentity<ApplicationUser>();
 
@@ -47,6 +50,7 @@ namespace epi12
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAnonymousId();
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions
             {
@@ -60,6 +64,7 @@ namespace epi12
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(name: "Default", pattern: "{controller}/{action}/{id?}");
                 endpoints.MapContent();
             });
         }
